@@ -1,0 +1,141 @@
+/* Fonts */
+
+@font-face {
+  font-family: "Rubik";
+  src: url(/static/fonts/Rubik-VariableFont_wght.ttf);
+}
+
+@font-face {
+  font-family: "Unison";
+  src: url(/static/fonts/Type\ Juice\ -\ Unison\ Pro\ Bold.otf);
+}
+
+/* Global */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+/* Header */
+
+.header {
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  padding: 0 10%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    90deg,
+    rgba(17, 13, 94, 1) 0%,
+    rgba(0, 0, 255, 1) 50%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+nav ul li {
+  display: inline-block;
+  list-style: none;
+  margin: 10px 10px;
+}
+
+nav ul svg {
+  transform: translate(1px, 2px);
+}
+
+/* Products collapsible */
+
+.maincenter {
+  position: absolute;
+  --xy-padding: 14px;
+  --border-radius: 6px;
+  --transition-ms: 0.3s;
+
+  justify-items: center;
+  margin: 1em;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  list-style: none;
+  background: gainsboro;
+}
+
+.leftpanel {
+  position: absolute;
+
+  justify-items: center;
+  margin: 1em;
+  width: 200px;
+  font-size: 16px;
+  list-style: none;
+  background: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius) var(--border-radius) var(--border-radius)
+    var(--border-radius);
+}
+
+.leftpanelheading {
+  position: relative;
+  margin: 1em;
+}
+
+.collapsible {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--xy-padding);
+  user-select: none;
+  background-color: rgb(17, 13, 94, 1);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: "\002B";
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: white;
+  border-radius: var(--border-radius) var(--border-radius);
+}
+
+.contentlist {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}

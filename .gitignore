@@ -1,0 +1,46 @@
+# macOS hidden files
+.DS_Store
+
+# npm dependencies (uncomment if you're using Node.js)
+node_modules/
+
+# VS Code settings (optional)
+.vscode/
+
+# JetBrains IDE settings (e.g., WebStorm)
+.idea/
+*.iml
+.idea/workspace.xml
+**/.idea/workspace.xml
+
+# Logs
+*.log
+
+# Temporary / cache folders
+tmp/
+temp/
+*.tmp
+.sass-cache/
+.cache/
+bower_components/
+*.swp
+
+# Build output (if using a bundler)
+dist/
+build/
+
+# Compiled media / design files (optional)
+*.psd
+*.ai
+
+# Optional media files
+*.ogg
+*.mp3
+*.mp4
+*.mov
+*.webm
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
