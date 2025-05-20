@@ -1,4 +1,6 @@
-/* Fonts */
+/* ============================
+   Fonts
+============================ */
 
 @font-face {
   font-family: "Rubik";
@@ -10,7 +12,9 @@
   src: url(/static/fonts/Type\ Juice\ -\ Unison\ Pro\ Bold.otf);
 }
 
-/* Global */
+/* ============================
+   Global
+============================ */
 
 * {
   margin: 0;
@@ -19,17 +23,35 @@
   font-family: "Rubik", sans-serif;
 }
 
-li {
-  list-style: none;
+html,
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Header */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+body.drawer-open main {
+  margin-left: 240px; /* same width as drawer */
+  transition: margin-left 0.3s ease;
+}
+
+
+/* ============================
+   Header
+============================ */
 
 .header {
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  padding: 0 10%;
+  height: 85px;
+  padding: 0 1%;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   background: linear-gradient(
     90deg,
@@ -39,103 +61,132 @@ li {
   );
 }
 
-nav {
-  width: 100%;
+.header nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 10px 0;
 }
 
-nav ul li {
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 8px;
+}
+
+.header nav ul svg {
+  transform: translate(1px, 2px);
+}
+
+.header nav ul {
+  margin-left: auto;
+}
+
+.header nav ul li {
   display: inline-block;
   list-style: none;
   margin: 10px 10px;
 }
 
-nav ul svg {
-  transform: translate(1px, 2px);
+/* ============================
+   Side Menu
+============================ */
+
+#drawer {
+  position: fixed;
+  top: var(--header-height, 85px);
+  left: 0;
+  width: 240px;
+  height: calc(100% - var(--header-height, 60px));
+  background-color: #fff;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+#drawer.open {
+  transform: translateX(0);
 }
 
-/* Products collapsible */
-
-.maincenter {
-  position: absolute;
-  --xy-padding: 14px;
-  --border-radius: 6px;
-  --transition-ms: 0.3s;
-
-  justify-items: center;
-  margin: 1em;
-  width: 100%;
-  height: 100%;
-  font-size: 16px;
-  list-style: none;
-  background: gainsboro;
-}
-
-.leftpanel {
-  position: absolute;
-
-  justify-items: center;
-  margin: 1em;
-  width: 200px;
-  font-size: 16px;
-  list-style: none;
-  background: white;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  border-radius: var(--border-radius) var(--border-radius) var(--border-radius)
-    var(--border-radius);
-}
-
-.leftpanelheading {
-  position: relative;
-  margin: 1em;
+.sideMenu-heading {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 16px;
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ccc;
 }
 
 .collapsible {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--xy-padding);
-  user-select: none;
-  background-color: rgb(17, 13, 94, 1);
-  color: white;
+  background-color: #fff;
+  color: #333;
   cursor: pointer;
-  font-weight: bold;
+  padding: 12px 16px;
+  border: none;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  font-size: 16px;
+  border-top: 1px solid #eee;
 }
 
-.active, .collapsible:hover {
-  background-color: #555;
-}
-
-.collapsible:after {
-  content: "\002B";
-  color: white;
-  font-weight: bold;
+.collapsible::after {
+  content: "▼";
   float: right;
-  margin-left: 5px;
 }
 
-.active:after {
-  content: "\2212";
+.collapsible.active::after {
+  content: "▲";
 }
 
 .content {
-  position: relative;
-  width: 100%;
-  padding: 0 18px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  background-color: white;
-  border-radius: var(--border-radius) var(--border-radius);
+  display: none;
+  padding: 0 16px;
+  background-color: #fafafa;
 }
 
-.contentlist {
-  padding-left: 0;
-  margin-bottom: 0;
+.contentlist,
+.contentbox {
   list-style: none;
+  padding: 0;
+  margin: 8px 0;
 }
+
+.contentlist li,
+.contentbox li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.drawer-toggle {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+/* ============================
+   Main Page Styles
+============================ */
+
+.page-home main section {
+  flex: 1;
+  background-color: #c9c9c9;
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+  border-radius: 8px;
+  gap: 12px;
+  padding: 24px;
+}
+
+/* ============================
+   Products Page Styles
+============================ */

@@ -1,36 +1,56 @@
 function loadLayoutComponents() {
-    const headerPromise = fetch('/components/header.html')
-        .then(response => {
-            if (!response.ok) throw new Error('Failed to load header');
-            return response.text();
-        })
-        .then(html => {
-            const header = document.createElement('header');
-            header.innerHTML = html;
-            document.body.insertBefore(header, document.body.firstChild);
-        });
+  const headerPromise = fetch("/components/header.html")
+    .then((response) => {
+      if (!response.ok) throw new Error("Failed to load header");
+      return response.text();
+    })
+    .then((html) => {
+      const header = document.createElement("header");
+      header.innerHTML = html;
+      document.body.insertBefore(header, document.body.firstChild);
+    });
 
-    const asidePromise = fetch('/components/aside.html')
-        .then(response => {
-            if (!response.ok) throw new Error('Failed to load aside');
-            return response.text();
-        })
-        .then(html => {
-            const aside = document.createElement('aside');
-            aside.innerHTML = html;
+  const asidePromise = fetch("/components/aside.html")
+    .then((response) => {
+      if (!response.ok) throw new Error("Failed to load aside");
+      return response.text();
+    })
+    .then((html) => {
+      const aside = document.createElement("aside");
+      aside.innerHTML = html;
 
-            const section = document.querySelector('main > section');
-            if (section && section.parentNode) {
-                section.parentNode.insertBefore(aside, section.nextSibling);
-            }
-        });
+      const main = document.querySelector("main");
+      if (main && main.parentNode) {
+        main.parentNode.insertBefore(aside, main.nextSibling);
+      }
+    });
 
-    Promise.all([headerPromise, asidePromise])
-        .finally(() => {
-            document.body.classList.remove('loading');
-            const loader = document.getElementById('loader');
-            if (loader) loader.remove();
-        });
+  // After both header and aside are loaded, initialize drawer
+  Promise.all([headerPromise, asidePromise]).then(initializeDrawer);
 }
 
-window.addEventListener('DOMContentLoaded', loadLayoutComponents);
+function initializeDrawer() {
+  const drawer = document.getElementById("drawer");
+  const toggleBtn = document.getElementById("drawerToggle");
+
+  if (drawer && toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      drawer.classList.toggle("open");
+    });
+  }
+
+  const collapsibles = document.querySelectorAll(".collapsible");
+  collapsibles.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.classList.toggle("active");
+      const content = btn.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  });
+}
+
+window.addEventListener("DOMContentLoaded", loadLayoutComponents);
