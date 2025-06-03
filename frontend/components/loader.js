@@ -1,5 +1,5 @@
 function loadLayoutComponents() {
-  const headerPromise = fetch("/components/header.html")
+  const headerPromise = fetch("/frontend/components/header.html")
     .then((response) => {
       if (!response.ok) throw new Error("Failed to load header");
       return response.text();
@@ -10,7 +10,7 @@ function loadLayoutComponents() {
       document.body.insertBefore(header, document.body.firstChild);
     });
 
-  const asidePromise = fetch("/components/aside.html")
+  const asidePromise = fetch("/frontend/components/aside.html")
     .then((response) => {
       if (!response.ok) throw new Error("Failed to load aside");
       return response.text();

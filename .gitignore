@@ -1,46 +1,63 @@
-# macOS hidden files
+# OS-specific
 .DS_Store
 
-# npm dependencies (uncomment if you're using Node.js)
+# Node modules
 node_modules/
 
-# VS Code settings (optional)
-.vscode/
-
-# JetBrains IDE settings (e.g., WebStorm)
-.idea/
-*.iml
-.idea/workspace.xml
-**/.idea/workspace.xml
-
-# Logs
-*.log
-
-# Temporary / cache folders
-tmp/
-temp/
-*.tmp
-.sass-cache/
-.cache/
-bower_components/
-*.swp
-
-# Build output (if using a bundler)
+# Build output
 dist/
 build/
 
-# Compiled media / design files (optional)
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+*.log
+logs/
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
+.env
+.env.*
+
+# VS Code settings
+.vscode/
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# Editor swap files
+*.swp
+
+# Misc cache folders
+.cache/
+tmp/
+temp/
+
+# Optional media/design files
 *.psd
 *.ai
-
-# Optional media files
-*.ogg
 *.mp3
 *.mp4
 *.mov
 *.webm
+*.ogg
 *.png
 *.jpg
 *.jpeg
 *.gif
 *.svg
+
+# Other package managers (optional)
+bower_components/
