@@ -1,63 +1,74 @@
-# OS-specific
+
+# OS-specific files
 .DS_Store
 
-# Node modules
+
+# Node.js dependencies
 node_modules/
+
 
 # Build output
 dist/
 build/
 
+
 # TypeScript cache
 *.tsbuildinfo
 
+
 # Logs
 *.log
-logs/
 *.log.*
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+
 # Runtime data
 pids/
 *.pid
-*.seed
 *.pid.lock
+*.seed
+
 
 # Environment variables
 .env
 .env.*
 
-# VS Code settings
-.vscode/
 
-# JetBrains IDEs
+# IDE/editor settings
+.vscode/
 .idea/
 *.iml
+.idea/workspace.xml
+**/.idea/workspace.xml
+
 
 # Editor swap files
 *.swp
 
-# Misc cache folders
-.cache/
+
+# Temporary/cache folders
 tmp/
 temp/
+*.tmp
+.cache/
+.sass-cache/
+bower_components/
 
-# Optional media/design files
+
+# Optional media and design files
 *.psd
 *.ai
+*.ogg
 *.mp3
 *.mp4
 *.mov
 *.webm
-*.ogg
 *.png
 *.jpg
 *.jpeg
 *.gif
 *.svg
-
-# Other package managers (optional)
-bower_components/

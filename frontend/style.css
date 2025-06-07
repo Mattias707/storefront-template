@@ -17,6 +17,7 @@ body {
 }
 
 main {
+  margin-top: 85px;
   flex: 1;
   display: flex;
   flex-direction: row-reverse;
@@ -26,16 +27,57 @@ main {
 }
 
 body.drawer-open main {
-  margin-left: 240px; /* same width as drawer */
+  margin-left: 240px;
   transition: margin-left 0.3s ease;
 }
 
 /* ============================
-   Colors
+   Colors and Themes
 ============================ */
 
 :root {
-  --background-gray: #dddddd;
+  /* Header Colors */
+  --color-header-bg: gray;
+  --color-menu-button: black;
+  --color-search-box: white;
+
+  /* Side Menu Colors */
+  --color-sidemenu-bg: white;
+  --color-sidemenu-borders: #ccc;
+  --color-sidemenu-head: #f1f1f1;
+  --color-sidemenu-collapsible: #fff;
+  --color-sidemenu-collapsible-hover: rgb(209, 209, 209);
+  --color-sidemenu-content: #fafafa;
+  --color-sidemenu-content-list: #333;
+
+  /* Pages Colors */
+  --color-page-background-section: #dddddd;
+  --color-page-texts: black;
+  --color-page-products-head: gray;
+  --color-page-product-window: white;
+}
+
+body.dark-theme {
+  /* Header Dark Colors */
+  --color-header-bg: rgb(17, 17, 17);
+  --color-menu-button: white;
+  --color-search-box: #222222;
+
+  /* Side Menu Dark Colors */
+  --color-sidemenu-bg: rgb(22, 22, 22);
+  --color-sidemenu-borders: #2c2c2c;
+  --color-sidemenu-head: rgb(14, 14, 14);
+  --color-sidemenu-collapsible: rgb(24, 24, 24);
+  --color-sidemenu-collapsible-hover: rgb(70, 69, 69);
+  --color-sidemenu-content: rgb(22, 22, 22);
+  --color-sidemenu-content-list: #333;
+
+  /* Pages Dark Colors */
+  --color-page-background: rgb(22, 22, 22);
+  --color-page-background-section: #333;
+  --color-page-texts: white;
+  --color-page-products-head: rgb(17, 17, 17);
+  --color-page-product-window: rgb(22, 22, 22);
 }
 
 /* ============================
@@ -43,45 +85,104 @@ body.drawer-open main {
 ============================ */
 
 .header {
+  width: 100%;
+  position: fixed;
+  z-index: 1;
   height: 85px;
-  padding: 0 1%;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  background: gray;
+  background-color: var(--color-header-bg);
 }
 
 .header nav {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 10px 0;
+}
+
+/* Header Start */
+
+.header-start {
+  height: 85px;
+  width: 360px;
+  display: flex;
+  align-items: center;
+  padding: 12px;
 }
 
 .menu-button {
   background: none;
   border: none;
   font-size: 28px;
-  color: white;
   cursor: pointer;
   margin-right: 16px;
   padding: 8px;
+  color: var(--color-menu-button);
 }
 
 .menu-button:hover {
   transform: scale(1.1);
 }
 
-.header nav ul svg {
+/* Header Center */
+
+.header-center {
+  width: 360px;
+  height: 85px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box {
+  width: 500px;
+}
+
+#search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  border-style: none;
+  outline-style: none;
+  color: var(--color-page-texts);
+  background-color: var(--color-search-box);
+}
+
+/* Header End */
+
+.header-end {
+  width: 360px;
+  height: 85px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-info {
+  margin-left: auto;
+  color: var(--color-page-texts);
+}
+
+.contact-info svg {
   transform: translate(1px, 2px);
 }
 
-.header nav ul {
-  margin-left: auto;
-}
-
-.header nav ul li {
+.contact-info li {
   display: inline-block;
   list-style: none;
   margin: 10px 10px;
+}
+
+.dark-theme-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 8px;
+  color: var(--color-menu-button);
 }
 
 /* ============================
@@ -89,16 +190,16 @@ body.drawer-open main {
 ============================ */
 
 #drawer {
+  width: 240px;
+  height: calc(100% - var(--header-height, 60px));
   position: fixed;
   top: var(--header-height, 85px);
   left: 0;
-  width: 240px;
-  height: calc(100% - var(--header-height, 60px));
-  background-color: #fff;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid var(--color-sidemenu-border);
   overflow-y: auto;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
+  background-color: var(--color-sidemenu-bg);
 }
 #drawer.open {
   transform: translateX(0);
@@ -108,25 +209,27 @@ body.drawer-open main {
   font-size: 18px;
   font-weight: bold;
   padding: 16px;
-  background-color: #f1f1f1;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--color-sidemenu-borders);
+  background-color: var(--color-sidemenu-head);
+  color: var(--color-page-texts);
 }
 
 .collapsible {
-  background-color: #fff;
+  width: 100%;
   color: #333;
   cursor: pointer;
   padding: 12px 16px;
   border: none;
-  width: 100%;
   text-align: left;
   outline: none;
   font-size: 16px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-sidemenu-borders);
+  background-color: var(--color-sidemenu-collapsible);
+  color: var(--color-page-texts);
 }
 
 .collapsible:hover {
-  background-color: rgb(209, 209, 209);
+  background-color: var(--color-sidemenu-collapsible-hover);
 }
 
 .collapsible::after {
@@ -141,67 +244,60 @@ body.drawer-open main {
 .content {
   display: none;
   padding: 0 16px;
-  background-color: #fafafa;
+  background-color: var(--color-sidemenu-content);
 }
 
-.contentlist,
-.contentbox {
-  list-style: none;
+.contentlist {
   padding: 0;
   margin: 8px 0;
+  list-style: none;
 }
 
-.contentlist li,
-.contentbox li {
+.contentlist li {
   padding: 8px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-sidemenu-borders);
 }
 
-.drawer-toggle {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 8px 10px;
-  cursor: pointer;
-  z-index: 1100;
+.contentlist a {
+  text-decoration: none;
+  color: var(--color-page-texts);
 }
 
 /* ============================
-   Main Page Styles
+   Home Page Styles
 ============================ */
 
 .page-home main {
-  width: 100%;
   padding: 16px;
   flex: 1;
   flex-direction: column;
+  background-color: var(--color-page-background);
 }
 
 .home-product-head {
-  height: 70px;
-  background-color: gray;
-  display: flex;
   width: 100%;
+  height: 70px;
   max-width: 1350px;
+  display: flex;
   margin: 0 auto;
   padding: 16px;
+  background-color: var(--color-page-products-head);
 }
 
 .home-product-head h1 {
   font-weight: 500;
+  color: var(--color-page-texts);
 }
 
 .page-home main section {
-  flex: 1;
-  background-color: var(--background-gray);
-  display: flex;
-  flex-direction: column;
   width: 100%;
   max-width: 1350px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   padding: 16px;
+  background-color: var(--color-page-background-section);
 }
 
 .home-product-showcase {
@@ -210,8 +306,8 @@ body.drawer-open main {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 16px;
   border-radius: 8px;
+  margin: 16px;
   gap: 24px;
   padding: 32px;
 }
@@ -222,25 +318,24 @@ body.drawer-open main {
 }
 
 .home-product-window {
-  height: 300px;
-  width: 200px;
+  width: 220px;
+  height: 400px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   justify-content: flex-end;
-  background-color: white;
   transition: 0.5s ease;
   padding: 10px;
+  background-color: var(--color-page-product-window);
 }
 
 .home-product-window:hover {
-  text-decoration: underline;
   transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .home-product-window__img {
-  flex-grow: 1;
   height: 250px;
+  flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -257,6 +352,7 @@ body.drawer-open main {
 .home-product-window__txt {
   text-align: center;
   margin-top: 10px;
+  color: var(--color-page-texts);
 }
 
 /* ============================
@@ -268,88 +364,84 @@ body.drawer-open main {
   padding: 16px;
   flex: 1;
   flex-direction: column;
+  background-color: var(--color-page-background);
 }
 
 .page-products main section {
-  flex: 1;
-  background-color: var(--background-gray);
-  display: flex;
   width: 100%;
+  flex: 1;
+  display: flex;
   max-width: 1350px;
   margin: 0 auto;
+  background-color: var(--color-page-background-section);
 }
 
 .product-panel {
   flex: 1;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
+  flex-direction: row;
   align-content: center;
-  margin: 16px;
   border-radius: 8px;
-  gap: 24px;
+  margin: 16px;
+  color: var(--color-page-texts);
 }
 
 .product-head {
-  height: 70px;
-  background-color: gray;
-  display: flex;
   width: 100%;
+  height: 70px;
+  display: flex;
   max-width: 1350px;
   margin: 0 auto;
   padding: 16px;
+  background-color: var(--color-page-products-head);
+  color: var(--color-page-texts);
 }
 
 .product-head h1 {
   font-weight: 500;
+  color: var(--color-page-texts);
 }
 
 .product-panel__img {
-  /* === Layout === */
-  height: 700px;
   width: 350px;
+  height: 700px;
   padding: 10px;
   margin-right: auto;
-
-  /* === Flexbox === */
   display: flex;
   flex-direction: column;
-
-  /* === Visual Style === */
-  background-color: red;
+  border: 2px solid gray;
   transition: 0.5s ease;
 }
 
 .product-panel__img img {
-  /* === Layout === */
   max-width: 100%;
   max-height: 100%;
+  display: block;
   margin: 0 auto;
   object-fit: contain;
-  display: block;
 }
 
 .product-panel__txt {
-  /* === Layout === */
-  height: 700px;
-  width: 930px;
+  flex: 1;
   padding: 10px;
-
-  /* === Flexbox === */
   display: flex;
   flex-direction: column;
-
-  /* === Visual Style === */
-  background-color: blue;
   transition: 0.5s ease;
 }
 
 .product-panel__title {
-  flex: 1;
-  justify-content: center;
-  background-color: white;
+  height: 100px;
+  padding: 6px;
+  align-content: center;
 }
 
 .product-panel__title h2 {
   font-weight: 400;
+}
+
+.product-panel__desc {
+  padding: 6px;
+  flex: 1;
+  justify-content: center;
 }

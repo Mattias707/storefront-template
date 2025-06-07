@@ -1,5 +1,5 @@
 function loadLayoutComponents() {
-  const headerPromise = fetch("/frontend/components/header.html")
+  const headerPromise = fetch("/frontend/components/layout/header.html")
     .then((response) => {
       if (!response.ok) throw new Error("Failed to load header");
       return response.text();
@@ -10,7 +10,7 @@ function loadLayoutComponents() {
       document.body.insertBefore(header, document.body.firstChild);
     });
 
-  const asidePromise = fetch("/frontend/components/aside.html")
+  const asidePromise = fetch("/frontend/components/layout/aside.html")
     .then((response) => {
       if (!response.ok) throw new Error("Failed to load aside");
       return response.text();
@@ -25,16 +25,19 @@ function loadLayoutComponents() {
       }
     });
 
-  // After both header and aside are loaded, initialize drawer
-  Promise.all([headerPromise, asidePromise]).then(initializeDrawer);
+  // After both header and aside are loaded, initialize drawer and theme toggle.
+  Promise.all([headerPromise, asidePromise]).then(() => {
+    initializeDrawer();
+    themeToggle();
+  });
 }
 
 function initializeDrawer() {
   const drawer = document.getElementById("drawer");
-  const toggleBtn = document.getElementById("drawerToggle");
+  const toggleDrawerBtn = document.getElementById("drawerToggle");
 
-  if (drawer && toggleBtn) {
-    toggleBtn.addEventListener("click", () => {
+  if (drawer && toggleDrawerBtn) {
+    toggleDrawerBtn.addEventListener("click", () => {
       drawer.classList.toggle("open");
     });
   }
