@@ -5,6 +5,7 @@ function themeToggle() {
   if (themeToggleBtn && theme) {
     themeToggleBtn.addEventListener("click", () => {
       theme.classList.toggle("dark-theme");
+      themeToggleBtn.classList.toggle("active")
     });
   }
 }
