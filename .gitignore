@@ -1,65 +1,84 @@
-
-# OS-specific files
+# OS files
 .DS_Store
-
-
-# Node.js dependencies
-node_modules/
-
+Thumbs.db
 
 # Build output
+/dist/
+/build/
 dist/
 build/
 
+# Ignore the uploads folder
+/uploads/
 
-# TypeScript cache
+# TypeScript
 *.tsbuildinfo
 
-
 # Logs
+logs/
 *.log
 *.log.*
-logs/
 npm-debug.log*
+pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+lerna-debug.log*
 
+# Environment files
+.env
+.env.*
+!.env.example
 
-# Runtime data
+# Runtime files
 pids/
 *.pid
 *.pid.lock
 *.seed
 
+# Diagnostic reports
+report.*.json
 
-# Environment variables
-.env
-.env.*
-
-
-# IDE/editor settings
-.vscode/
-.idea/
-*.iml
-.idea/workspace.xml
-**/.idea/workspace.xml
-
-
-# Editor swap files
-*.swp
-
+# Testing & Coverage
+/coverage
+/.nyc_output
+/jest-cache/
+.vitest/
+*.lcov
 
 # Temporary/cache folders
 tmp/
 temp/
 *.tmp
+.temp
 .cache/
 .sass-cache/
 bower_components/
 
+# Editor swap/lock files
+*.swp
+*.lock
 
-# Optional media and design files
+# VS Code settings
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains (WebStorm, IntelliJ, etc.)
+.idea/
+*.iml
+.idea/workspace.xml
+
+# Project-specific
+.project
+.classpath
+.settings/
+.c9/
+*.launch
+*.sublime-workspace
+
+# Optional media/design assets
 *.psd
 *.ai
 *.ogg
@@ -72,3 +91,17 @@ bower_components/
 *.jpeg
 *.gif
 *.svg
+
+# Node.js dependencies
+/node_modules/
+**/node_modules/
+
+# Prisma generated client
+/generated/
+migrations/
+/prisma/generated/
+
+# SQLite database files
+*.db
+*.sqlite
+*.sqlite3

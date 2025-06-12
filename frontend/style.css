@@ -282,6 +282,70 @@ body.dark-theme {
 }
 
 /* ============================
+   Product Showcase Styles
+============================ */
+
+.product-showcase {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 8px;
+  margin: 16px;
+  gap: 24px;
+  padding: 32px;
+}
+
+.product-showcase a {
+  text-decoration: none;
+  color: black;
+}
+
+.product-window {
+  width: 220px;
+  height: 400px;
+  transition: 0.5s ease;
+  padding: 10px;
+  background-color: var(--color-page-product-window);
+}
+
+.product-window a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.product-window:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-window__img {
+  height: 250px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-window__img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.product-window__txt {
+  text-align: center;
+  margin-top: 10px;
+  color: var(--color-page-texts);
+}
+
+/* ============================
    Home Page Styles
 ============================ */
 
@@ -318,71 +382,48 @@ body.dark-theme {
   background-color: var(--color-page-background-section);
 }
 
-.home-product-showcase {
+/* ============================
+   Catalog Page Styles
+============================ */
+
+.page-catalog main {
+  padding: 16px;
+  flex: 1;
+  flex-direction: column;
+  background-color: var(--color-page-background);
+}
+
+.home-product-head {
+  width: 100%;
+  height: 70px;
+  max-width: 1350px;
+  display: flex;
+  margin: 0 auto;
+  padding: 16px;
+  background-color: var(--color-page-products-head);
+}
+
+.home-product-head h1 {
+  font-weight: 500;
+  color: var(--color-page-texts);
+}
+
+.page-catalog main section {
+  width: 100%;
+  max-width: 1350px;
   flex: 1;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  border-radius: 8px;
-  margin: 16px;
-  gap: 24px;
-  padding: 32px;
-}
-
-.home-product-showcase a {
-  text-decoration: none;
-  color: black;
-}
-
-.home-product-window {
-  width: 220px;
-  height: 400px;
-  transition: 0.5s ease;
-  padding: 10px;
-  background-color: var(--color-page-product-window);
-}
-
-.home-product-window a {
-  width: 100%;
-  height: 100%;
-  display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-}
-
-.home-product-window:hover {
-  transform: scale(1.1);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.home-product-window__img {
-  height: 250px;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.home-product-window__img img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  display: block;
   margin: 0 auto;
-}
-
-.home-product-window__txt {
-  text-align: center;
-  margin-top: 10px;
-  color: var(--color-page-texts);
+  padding: 16px;
+  background-color: var(--color-page-background-section);
 }
 
 /* ============================
    Product Page Styles
 ============================ */
 
-.page-products main {
+.page-product main {
   width: 100%;
   padding: 16px;
   flex: 1;
@@ -405,7 +446,7 @@ body.dark-theme {
   color: var(--color-page-texts);
 }
 
-.page-products main section {
+.page-product main section {
   width: 100%;
   max-width: 1350px;
   flex: 1;

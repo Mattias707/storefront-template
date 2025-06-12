@@ -1,0 +1,25 @@
+GET http://localhost:3000
+
+### Fetch all products request
+GET http://localhost:3000/products
+
+### Fetch one product request
+GET http://localhost:3000/products/1
+
+### Create new products request
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "LGTV",
+    "price": 14.99,
+    "imageURL": "/uploads/ce.jpg"
+}
+
+
+### Update products request
+PUT http://localhost:3000/products/1
+
+### Update products request
+DELETE http://localhost:3000/products/1
