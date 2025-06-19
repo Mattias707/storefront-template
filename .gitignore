@@ -44,6 +44,7 @@ report.*.json
 /jest-cache/
 .vitest/
 *.lcov
+/backend/test
 
 # Temporary/cache folders
 tmp/

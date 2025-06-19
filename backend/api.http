@@ -1,25 +1,32 @@
-GET http://localhost:3000
+GET http://localhost:3001
 
 ### Fetch all products request
-GET http://localhost:3000/products
+GET http://localhost:3001/products
 
 ### Fetch one product request
-GET http://localhost:3000/products/1
+GET http://localhost:3001/products/1
 
 ### Create new products request
-POST http://localhost:3000/products
+POST http://localhost:3001/products
 Content-Type: application/json
 
 {
-    "id": 1,
-    "name": "LGTV",
-    "price": 14.99,
-    "imageURL": "/uploads/ce.jpg"
+  "name": "Product 1",
+  "price": 9.99,
+  "imageURL": "/uploads/ce.jpg",
+  "description": "This is the product 1.",
+  "categories": ["brand1"]
 }
 
 
 ### Update products request
-PUT http://localhost:3000/products/1
+PUT http://localhost:3001/products/2
+Content-Type: application/json
 
-### Update products request
-DELETE http://localhost:3000/products/1
+{
+
+  "imageURL": "http://localhost:3001/uploads/ce.jpg"
+}
+
+### Delete product request
+DELETE http://localhost:3001/products/1

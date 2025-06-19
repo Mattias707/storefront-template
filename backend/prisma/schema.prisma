@@ -6,20 +6,28 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 
 model Product {
-  id          Int     @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   name        String
   description String?
   price       Float
   imageURL    String?
-  createdAT   DateTime @default(now())
+  slug        String?     @unique
+  sku         String?     @unique
+  categories  Category[]  @relation("ProductCategories")
+  createdAT   DateTime    @default(now())
+}
+
+model Category {
+  id          Int         @id @default(autoincrement())
+  name        String      @unique
+  products    Product[]   @relation("ProductCategories")
 }

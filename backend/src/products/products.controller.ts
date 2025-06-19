@@ -6,27 +6,26 @@ import {
   Delete,
   Body,
   Param,
+  Query,
   HttpException,
   HttpStatus,
   ParseIntPipe,
   HttpCode,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { ProductsService } from './products.service';
 import { CreateProductDTO } from './dto/create-product.dto';
-import { updateProductDTO } from './dto/update-product.dto';
+import { UpdateProductDTO } from './dto/update-product.dto';
 
 @Controller('products')
 export class ProductsController {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly productsService: ProductsService) {}
 
-  // Create new product
+  /* ─────────────────────────── CREATE ─────────────────────────── */
+
   @Post()
-  async create(data: CreateProductDTO) {
+  async create(@Body() data: CreateProductDTO) {
     try {
-      const product = await this.prisma.product.create({
-        data,
-      });
-      return product;
+      return await this.productsService.create(data);
     } catch (e) {
       throw new HttpException(
         `Failed to create product: ${e.message}`,
@@ -35,27 +34,26 @@ export class ProductsController {
     }
   }
 
-  // Get all products
+  /* ─────────────────────────── FETCH (ALL / BY CATEGORY) ─────────────────────────── */
+
   @Get()
-  async findMany() {
+  async findMany(@Query('category') category?: string) {
     try {
-      const products = await this.prisma.product.findMany();
-      return products;
+      return await this.productsService.findMany(category);
     } catch (e) {
       throw new HttpException(
-        `Failed to feth products: ${e.message}`,
+        `Failed to fetch products: ${e.message}`,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
   }
 
-  // Get a product by id
+  /* ─────────────────────────── FETCH (ONE) ─────────────────────────── */
+
   @Get(':id')
-  async findUnique(@Param('id', ParseIntPipe) id: string) {
+  async findUnique(@Param('id', ParseIntPipe) id: number) {
     try {
-      const product = await this.prisma.product.findUnique({
-        where: { id: Number(id) },
-      });
+      const product = await this.productsService.findUnique(id);
       if (!product) {
         throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
       }
@@ -68,18 +66,15 @@ export class ProductsController {
     }
   }
 
-  // Update a product by id
+  /* ─────────────────────────── UPDATE ─────────────────────────── */
+
   @Put(':id')
   async update(
-    @Param('id') id: string,
-    @Body() updateProductDTO: updateProductDTO,
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateProductDTO: UpdateProductDTO,
   ) {
     try {
-      const updatedProduct = await this.prisma.product.update({
-        where: { id: Number(id) },
-        data: updateProductDTO,
-      });
-      return updatedProduct;
+      return await this.productsService.update(id, updateProductDTO);
     } catch (e) {
       throw new HttpException(
         `Failed to update product: ${e.message}`,
@@ -88,15 +83,13 @@ export class ProductsController {
     }
   }
 
-  // Delete a product by id
+  /* ─────────────────────────── DELETE ─────────────────────────── */
+
   @Delete(':id')
   @HttpCode(204) // No content
-  async delete(@Param('id') id: string) {
+  async delete(@Param('id', ParseIntPipe) id: number) {
     try {
-      const deletedProduct = await this.prisma.product.delete({
-        where: { id: Number(id) },
-      });
-      return deletedProduct;
+      return await this.productsService.delete(id);
     } catch (e) {
       throw new HttpException(
         `Failed to delete product: ${e.message}`,
