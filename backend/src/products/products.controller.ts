@@ -34,12 +34,20 @@ export class ProductsController {
     }
   }
 
-  /* ─────────────────────────── FETCH (ALL / BY CATEGORY) ─────────────────────────── */
+  /* ─────────────────────────── FETCH (ALL / BY CATEGORY, BRAND & PRODUCT TYPE) ─────────────────────────── */
 
   @Get()
-  async findMany(@Query('category') category?: string) {
+  async findMany(
+    @Query('category') category?: string,
+    @Query('productType') productType?: string,
+    @Query('brand') brand?: string,
+  ) {
     try {
-      return await this.productsService.findMany(category);
+      return await this.productsService.findMany({
+        category,
+        productType,
+        brand,
+      });
     } catch (e) {
       throw new HttpException(
         `Failed to fetch products: ${e.message}`,

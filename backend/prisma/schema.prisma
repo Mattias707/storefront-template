@@ -15,19 +15,40 @@ datasource db {
 
 
 model Product {
-  id          Int         @id @default(autoincrement())
-  name        String
-  description String?
-  price       Float
-  imageURL    String?
-  slug        String?     @unique
-  sku         String?     @unique
-  categories  Category[]  @relation("ProductCategories")
-  createdAT   DateTime    @default(now())
+  id                Int             @id @default(autoincrement())
+  name              String
+  label             String?
+  description       String?
+  price             Float
+  quantityInStock   Int?
+  imageURL          String?
+  slug              String?         @unique
+  sku               String?         @unique
+  categories        Category[]      @relation("ProductCategories")
+  productType       ProductType?    @relation(fields: [productTypeId], references: [id])
+  productTypeId     Int?
+  brand             Brand?          @relation(fields: [brandId], references: [id])
+  brandId           Int?
+  createdAT         DateTime        @default(now())
 }
 
 model Category {
-  id          Int         @id @default(autoincrement())
-  name        String      @unique
-  products    Product[]   @relation("ProductCategories")
+  id                Int             @id @default(autoincrement())
+  name              String          @unique
+  label             String
+  products          Product[]       @relation("ProductCategories")
+}
+
+model ProductType {
+  id                Int             @id @default(autoincrement())
+  name              String          @unique
+  label             String
+  products          Product[]
+}
+
+model Brand {
+  id                Int             @id @default(autoincrement())
+  name              String          @unique
+  label             String
+  products          Product[]
 }

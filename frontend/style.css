@@ -340,7 +340,16 @@ body.dark-theme {
 }
 
 .product-window__txt {
-  height: 80px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  color: var(--color-page-texts);
+}
+
+.product-window__price {
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -439,13 +448,17 @@ body.dark-theme {
   height: 70px;
   max-width: 1350px;
   display: flex;
+  align-items: center;
   margin: 0 auto;
   padding: 16px;
+  gap: 5px;
+  font-size: x-large;
+  color: var(--color-page-texts);
   background-color: var(--color-page-products-head);
 }
 
-.product-head h1 {
-  font-weight: 500;
+.product-head a {
+  text-decoration: none;
   color: var(--color-page-texts);
 }
 

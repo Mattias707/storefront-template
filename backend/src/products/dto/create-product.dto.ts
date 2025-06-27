@@ -7,6 +7,10 @@ export class CreateProductDTO {
 
   @IsString()
   @IsNotEmpty()
+  label?: string;
+
+  @IsString()
+  @IsNotEmpty()
   description: string;
 
   @IsNumber()
@@ -20,4 +24,12 @@ export class CreateProductDTO {
   @IsString({ each: true })
   @IsNotEmpty({ each: true })
   categories: string[];
+
+  @IsString()
+  @IsNotEmpty()
+  productType: string;
+
+  @IsString()
+  @IsNotEmpty()
+  brand: string;
 }

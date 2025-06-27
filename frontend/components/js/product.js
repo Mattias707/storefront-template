@@ -26,9 +26,10 @@ function displayProduct(product) {
   const productDescription = document.getElementById("description");
   const productPrice = document.getElementById("price");
   const productImage = document.getElementById("image");
+  const productCategories = document.getElementById("category");
 
   if (productName) {
-    productName.textContent = product.name;
+    productName.textContent = product.label;
   }
   if (productDescription) {
     productDescription.textContent = product.description;
@@ -39,5 +40,25 @@ function displayProduct(product) {
   if (productImage) {
     productImage.src = product.imageURL;
     productImage.alt = product.name;
+  }
+
+  if (product.categories && product.brand && productCategories) {
+    const categoryNames = product.categories
+      .map((category) => category.label)
+      .join(" → ");
+
+    const pathPrefix = document.createTextNode(categoryNames + " → ");
+
+    const pathBrand = document.createElement("a");
+    pathBrand.href = `/frontend/pages/catalog.html?brand=${product.brand.name}`;
+    pathBrand.textContent = product.brand.label;
+
+    const pathProduct = document.createElement("div");
+    pathProduct.textContent = "→ " + product.label;
+
+    productCategories.innerHTML = "";
+    productCategories.appendChild(pathPrefix);
+    productCategories.appendChild(pathBrand);
+    productCategories.appendChild(pathProduct);
   }
 }

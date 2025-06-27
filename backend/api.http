@@ -11,22 +11,29 @@ POST http://localhost:3001/products
 Content-Type: application/json
 
 {
-  "name": "Product 1",
-  "price": 9.99,
-  "imageURL": "/uploads/ce.jpg",
-  "description": "This is the product 1.",
-  "categories": ["brand1"]
+  "name": "",
+  "label": "",
+  "price": ,
+  "imageURL": "",
+  "description": "",
+  "categories": [""],
+  "productType": "",
+  "brand": ""
 }
 
 
 ### Update products request
-PUT http://localhost:3001/products/2
+PUT http://localhost:3001/products/1
 Content-Type: application/json
 
 {
 
-  "imageURL": "http://localhost:3001/uploads/ce.jpg"
 }
 
 ### Delete product request
 DELETE http://localhost:3001/products/1
+Content-Type: application/json
+
+{
+
+}
